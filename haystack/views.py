@@ -60,7 +60,9 @@ class SearchView(object):
         if form_kwargs:
             kwargs.update(form_kwargs)
         
-        if len(self.request.GET):
+        if self.request.method == "POST":
+            data = self.request.POST
+        elif len(self.request.GET):
             data = self.request.GET
         
         if self.searchqueryset is not None:
